@@ -28,6 +28,8 @@ parser.add_argument("--fontsize", type=int, default=24, help="Font size")
 parser.add_argument("--width", type=int, default=800, help="Window width")
 parser.add_argument("--height", type=int, default=600, help="Window height")
 parser.add_argument("--speed", type=float, default=0.05, help="Text speed per character (seconds)")
+parser.add_argument("--delayheavy", type=float, default=5, help="Text speed multiplier per . ? or ! character")
+parser.add_argument("--delaylight", type=float, default=3, help="Text speed multiplier per , ; or : character")
 parser.add_argument("--iconsize", type=int, nargs=2, metavar=('WIDTH', 'HEIGHT'), default=[64, 64],
                     help="Icon size as WIDTH HEIGHT")
 parser.add_argument("--padding", type=int, default=20, help="Padding between icon/text and edges")
@@ -92,9 +94,9 @@ else:  # bottom
 # ---- helper for punctuation timing ----
 def get_delay(char):
     if char in ".!?":
-        return args.speed * 5
+        return args.speed * args.delayheavy
     elif char in ",;:":
-        return args.speed * 3
+        return args.speed * args.delaylight
     else:
         return args.speed
 
@@ -135,5 +137,6 @@ while running:
             if event.key == pygame.K_RETURN:  # Enter key
                 running = False
 
+pygame.quit()
 pygame.quit()
 
