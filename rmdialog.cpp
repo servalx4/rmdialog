@@ -407,11 +407,7 @@ int main(int argc, char* argv[]) {
     renderer.renderDialogue();
     renderer.waitForExit();
     
-    // Cleanup happens automatically in destructor
-    Mix_Quit();
-    TTF_Quit();
-    IMG_Quit();
-    SDL_Quit();
+    // Cleanup happens automatically in destructor - don't call Quit functions here!
     
     return 0;
 }
